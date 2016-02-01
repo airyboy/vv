@@ -2,49 +2,51 @@
   ng-include src="'app/shared/logo.html'"
 
 .row
-  .col-md-3
-    vv-select items='persons' ng-model='head' display-field='age' value-field='id' empty-text='All persons'
-  .col-md-3
-    | {{ stars }}
-    vv-star-rating ng-model='stars'
-| {{ head }}
-form.form-inline
-  .form-group
-    label Name
-    input.form-control type='text' ng-model='newCompany'
-  button.btn.btn-default type='submit' ng-click='add()' Save
-table.table.table-condensed
-  thead
-    th Name
-  tbody
-    tr ng-repeat='company in companies'
-      td {{ company.name }}
+  form.form-inline
+    .form-group
+      input type='text' ng-model='description'
+    .form-group
+      input type='file' ng-model='image' ngf-select=''
+    button.btn.btn-default type='submit' ng-click='upload()' Save
+.row
+  img ngf-thumbnail="image || 'http://placehold.it/250x250'"
+.row
+  button.btn.btn-default type='submit' ng-click='do()' Faker
+.row
+  button.btn.btn-default type='submit' ng-click='parse()' Parse
+.row
+  table.table.table-condensed
+    thead
+      th Name
+    tbody
+      tr ng-repeat='company in companies'
+        td {{ company.name }}
 
-form.form-inline
-  .form-group
-    label Name
-    input.form-control type='text' ng-model='newEmployee.name'
-  .form-group
-    label Company
-    select.form-control ng-model="newEmployee.company" required='true' ng-options="company.objectId as company.name for company in companies"
-  button.btn.btn-default type='submit' ng-click='add()' Save
+  form.form-inline
+    .form-group
+      label Name
+      input.form-control type='text' ng-model='newEmployee.name'
+    .form-group
+      label Company
+      select.form-control ng-model="newEmployee.company" required='true' ng-options="company.objectId as company.name for company in companies"
+    button.btn.btn-default type='submit' ng-click='add()' Save
 
-table.table.table-condensed
-  thead
-    th Name
-    th Company
-  tbody
-    tr ng-repeat='employee in employees'
-      td {{ employee.name }}
-      td {{ employee.company.name }}
+  table.table.table-condensed
+    thead
+      th Name
+      th Company
+    tbody
+      tr ng-repeat='employee in employees'
+        td {{ employee.name }}
+        td {{ employee.company.name }}
 
-button.btn.btn-default ng-click="get('ShL8mXtVwO')" Get sample
-p {{ theTour.text }}
-table.table.table-condensed
-  thead
-    th Name
-  tbody
-    tr ng-repeat='tour in tours'
-      td {{ tour.title }}
-      td 
-        button.btn.btn-default ng-click='get(tour.objectId)' Get
+  button.btn.btn-default ng-click="get('ShL8mXtVwO')" Get sample
+  p {{ theTour.text }}
+  table.table.table-condensed
+    thead
+      th Name
+    tbody
+      tr ng-repeat='tour in tours'
+        td {{ tour.title }}
+        td 
+          button.btn.btn-default ng-click='get(tour.objectId)' Get
